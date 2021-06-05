@@ -1,0 +1,21 @@
+cd ..
+cd Downloads
+docker-compose -f docker-compose-db.yml up -d
+docker-compose -f docker-compose-db.yml down
+
+ssh-keygen -t rsa -C "ambrinoc.marian@gmail.com" -f ~/.ssh/id_rsa_github
+open ~/.ssh/config
+open ~/.ssh/config
+pbcopy < ~/.ssh/id_rsa_github.pub
+
+# This is a comment
+# Personal github account
+Host github.com
+   HostName github.com
+   User MarianAmbrinoc
+   IdentityFile ~/.ssh/id_rsa_github
+# Personal gitlab account
+Host gitlab.com
+   HostName gitlab.softvision.ro
+   User marian.ambrinoc
+   IdentityFile ~/.ssh/id_rsa

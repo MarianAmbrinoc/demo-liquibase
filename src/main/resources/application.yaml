@@ -1,0 +1,40 @@
+spring:
+  profiles:
+    active: docker
+  application:
+    name: liquibase
+
+logging:
+  level:
+    liquibase: INFO
+---
+spring:
+  profiles: docker
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://localhost:5432/demo?current_schema=public
+    driverClassName: org.postgresql.Driver
+    username: admin
+    password: password
+  liquibase:
+    parameters:
+      textColumnType: TEXT
+    contexts: nonprod
+---
+spring:
+  profiles: h2
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  datasource:
+    url: jdbc:h2:mem:demo
+    driverClassName: org.h2.Driver
+    username: admin
+    password: password
+  liquibase:
+    parameters:
+      textColumnType: VARCHAR(250)
+    contexts: nonprod
+  h2:
+    console:
+      enabled: true
