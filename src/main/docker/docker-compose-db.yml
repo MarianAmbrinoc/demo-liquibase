@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  database:
+    image: postgres:10
+    container_name: database
+    hostname: database
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: nomenclator
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "0.0.0.0:5432:5432"
+    networks:
+      - localnet
+
+networks:
+  localnet:
+    driver: bridge
+
+volumes:
+  pgdata:
+
